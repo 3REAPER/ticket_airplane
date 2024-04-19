@@ -4,7 +4,7 @@ import java.util.Date
 
 data class Ticket(
     val id: Int,
-    val badge: String,
+    val badge: String?,
     val price: Price,
     val providedName: String,
     val company: String,
@@ -26,10 +26,10 @@ data class FlyInfo(
 
 data class Luggage(
     val hasLuggage: Boolean,
-    val price: Price
+    val price: Price?
 )
 
 data class HandLuggage(
     val hasHandLuggage: Boolean,
-    val size: String
+    val size: String?
 )
