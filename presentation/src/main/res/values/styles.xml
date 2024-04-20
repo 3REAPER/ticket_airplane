@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorOnPrimary">@color/grey6</item>
+    </style>
+    
+    <style name="tv22Sembold">
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">@font/sembold</item>
+    </style>
+
+    <style name="tv20Sembold" parent="tv22Sembold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="tv16Medium">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/medium</item>
+    </style>
+
+    <style name="tv14Regular">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/regular</item>
+    </style>
+
+    <style name="tv16Regular">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/regular</item>
+    </style>
+    
+    <style name="tv14Sembold" parent="tv22Sembold">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BottomNavigationStyle">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+</resources>

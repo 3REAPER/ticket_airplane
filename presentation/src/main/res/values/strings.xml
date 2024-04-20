@@ -1,0 +1,9 @@
+<resources>
+  <string name="ticket">Авиабилеты</string>
+  <string name="hotel">Отели</string>
+  <string name="map">Короче</string>
+  <string name="subscribe">Подписки</string>
+  <string name="profile">Профиль</string>
+
+  <string name="search_tickets">Поиск дешевых\nавиабилетов</string>
+</resources>
