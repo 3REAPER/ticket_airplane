@@ -29,6 +29,8 @@ class SearchTicketsFragment : Fragment() {
     private val args: SearchTicketsFragmentArgs by navArgs()
     private val viewModel: SearchTicketsViewModel by viewModels()
     private val adapter = SearchTicketAdapter()
+    private var dateDeparture = Calendar.getInstance().time
+    private var dateArrival: Date? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,10 +74,13 @@ class SearchTicketsFragment : Fragment() {
             showStartDatePickerDialog()
         }
 
+        binding.llDate.setOnClickListener {
+            showStartDatePickerDialog(true)
+        }
+
         binding.rvTicketOffers.adapter = adapter
 
-        val dateNow = Calendar.getInstance().time
-        binding.date.text = convertDate(dateNow)
+        binding.date.text = convertDate(dateDeparture)
     }
 
     private fun setCollectors() {
@@ -101,7 +106,7 @@ class SearchTicketsFragment : Fragment() {
         date.getStringByFormat("d LLL,ccc").replace(".", "")
 
 
-    private fun showStartDatePickerDialog() {
+    private fun showStartDatePickerDialog(isDeparture: Boolean = false) {
         context?.let {
             val calendarPlusDay = Calendar.getInstance()
             calendarPlusDay.add(Calendar.DAY_OF_MONTH, 1)
@@ -121,15 +126,29 @@ class SearchTicketsFragment : Fragment() {
                         )
                         calendar.set(Calendar.MILLISECOND, 0)
 
-                        binding.tvBack.text = convertDate(calendar.time)
-                        binding.ivAdd.gone()
+                        if (isDeparture) {
+                            dateDeparture = calendar.time
+                            binding.date.text = convertDate(calendar.time)
+                        } else {
+                            dateArrival = calendar.time
+                            binding.tvBack.text = convertDate(calendar.time)
+                            binding.ivAdd.gone()
+                        }
                     }
                 },
                 calendarPlusDay.get(Calendar.YEAR),
                 calendarPlusDay.get(Calendar.MONTH) - 1,
                 calendarPlusDay.get(Calendar.DAY_OF_MONTH)
             )
-            dialog.datePicker.minDate = calendarPlusDay.time.time
+            if (isDeparture) {
+                dateArrival?.let {
+                    dialog.datePicker.maxDate = it.time
+                }
+                dialog.datePicker.minDate = Calendar.getInstance().time.time
+            } else {
+                dialog.datePicker.minDate = dateDeparture.time
+            }
+
             dialog.show()
         }
 
