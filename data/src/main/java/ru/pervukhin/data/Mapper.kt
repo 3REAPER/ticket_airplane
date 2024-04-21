@@ -50,7 +50,7 @@ class Mapper {
         )
 
         private fun PriceResponse.toPrice() = Price(
-            price
+            value
         )
 
         private fun FlyInfoResponse.toFlyInfo() = FlyInfo(

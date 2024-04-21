@@ -5,5 +5,11 @@
   <string name="subscribe">Подписки</string>
   <string name="profile">Профиль</string>
 
+  <string name="currency_symbol">%1$s ₽</string>
+
   <string name="search_tickets">Поиск дешевых\nавиабилетов</string>
+  <string name="hint_from">Откуда - Москва</string>
+  <string name="hint_to">Куда - Турция</string>
+  <string name="title_music">Музыкально отлететь</string>
+  <string name="price">от %1$s</string>
 </resources>
