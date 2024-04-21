@@ -65,7 +65,7 @@ class SearchBottomSheet: BottomSheetDialogFragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(p0: Editable?) {
-                val action = SearchBottomSheetDirections.actionSearchBottomSheetToSearchTicketsFragment()
+                val action = SearchBottomSheetDirections.actionSearchBottomSheetToSearchTicketsFragment(binding.etFrom.text.toString(), binding.etTo.text.toString())
                 findNavController().navigate(action)
             }
         })

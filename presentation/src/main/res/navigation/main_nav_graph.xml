@@ -67,6 +67,12 @@
         android:id="@+id/searchTicketsFragment"
         android:name="ru.pervukhin.presentation.searchTickets.SearchTicketsFragment"
         android:label="fragment_search_tickets">
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="to"
+            app:argType="string" />
         <action
             android:id="@+id/action_searchTicketsFragment_to_allTicketsFragment"
             app:destination="@id/allTicketsFragment" />

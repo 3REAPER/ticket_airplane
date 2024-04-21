@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import ru.pervukhin.presentation.R
-import ru.pervukhin.presentation.loadImage
 
 class SearchAdapter(val onClick: (SearchObject) -> Unit = {}) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
     private var data = listOf<SearchObject>()

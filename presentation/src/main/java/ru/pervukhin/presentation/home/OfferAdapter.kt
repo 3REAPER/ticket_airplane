@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import ru.pervukhin.domain.Offer
 import ru.pervukhin.presentation.R
-import ru.pervukhin.presentation.loadImage
 import ru.pervukhin.presentation.toCurrencyString
 import java.time.OffsetTime
 
