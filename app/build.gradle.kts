@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("kotlin-kapt")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -55,4 +56,8 @@ dependencies {
 
     implementation("com.google.dagger:dagger:2.51")
     kapt("com.google.dagger:dagger-compiler:2.51")
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.50")
 }

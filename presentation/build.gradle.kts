@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -34,9 +36,14 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
+    kapt{
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
+    implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -51,10 +58,17 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation("javax.inject:javax.inject:1")
+
     //Navigations
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.50")
+
 }
