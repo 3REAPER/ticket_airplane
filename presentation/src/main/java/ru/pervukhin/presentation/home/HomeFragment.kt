@@ -3,6 +3,7 @@ package ru.pervukhin.presentation.home
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
+import android.text.Layout.Directions
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import ru.pervukhin.presentation.R
 import ru.pervukhin.presentation.databinding.FragmentHomeBinding
+import ru.pervukhin.presentation.search.SearchBottomSheet
 
 
 @AndroidEntryPoint
@@ -55,6 +59,11 @@ class HomeFragment: Fragment() {
 
             override fun afterTextChanged(p0: Editable?) {}
         })
+
+        binding.etTo.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSearchBottomSheet(binding.etFrom.text.toString())
+            findNavController().navigate(action)
+        }
 
 
     }

@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import ru.pervukhin.domain.Offer
 import ru.pervukhin.presentation.R
 import ru.pervukhin.presentation.loadImage
@@ -29,14 +30,13 @@ class OfferAdapter: RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
         val town: TextView = holder.itemView.findViewById(R.id.town)
         val price: TextView = holder.itemView.findViewById(R.id.price)
 
-        val drawableId = when(offer.id){
-            1-> R.drawable.first_image
-            2-> R.drawable.second_image
-            3-> R.drawable.third_image
-            else -> R.drawable.third_image
+        when(offer.id){
+            1-> image.setImageResource(R.drawable.first_image)
+            2-> image.setImageResource(R.drawable.second_image)
+            3-> image.setImageResource(R.drawable.third_image)
+            else -> image.setImageResource(R.drawable.third_image)
         }
 
-        image.loadImage(drawableId)
         title.text = offer.title
         town.text = offer.town
         price.text = holder.itemView.context.getString(R.string.price).format(offer.price.value.toFloat().toCurrencyString(holder.itemView.context))

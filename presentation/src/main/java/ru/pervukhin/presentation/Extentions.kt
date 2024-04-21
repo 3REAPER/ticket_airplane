@@ -15,7 +15,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 fun Int.px() =
-    (this / Resources.getSystem().displayMetrics.density).toInt()
+    (this * Resources.getSystem().displayMetrics.density)
 
 fun <T> ImageView.loadImage(model: T) {
     Glide.with(context)

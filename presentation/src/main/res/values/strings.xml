@@ -12,4 +12,10 @@
   <string name="hint_to">Куда - Турция</string>
   <string name="title_music">Музыкально отлететь</string>
   <string name="price">от %1$s</string>
+
+  <string name="hard_route">Сложный маршрут</string>
+  <string name="any_place">Куда угодно</string>
+  <string name="weekend">Выходные</string>
+  <string name="hot_ticket">Горячие билеты</string>
+  <string name="tag_search">Популярное направление</string>
 </resources>

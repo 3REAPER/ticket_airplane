@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="ru.pervukhin.presentation.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_searchBottomSheet"
+            app:destination="@id/searchBottomSheet"></action>
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="ru.pervukhin.presentation.map.MapFragment"
@@ -16,7 +20,7 @@
     <fragment
         android:id="@+id/hotelFragment"
         android:name="ru.pervukhin.presentation.hotel.HotelFragment"
-        android:label="fragment_hotel"/>
+        android:label="fragment_hotel" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.pervukhin.presentation.profile.ProfileFragment"
@@ -24,5 +28,51 @@
     <fragment
         android:id="@+id/subscribeFragment"
         android:name="ru.pervukhin.presentation.subscribe.SubscribeFragment"
-        android:label="fragment_subscribe"/>
+        android:label="fragment_subscribe" />
+
+    <dialog
+        android:id="@+id/searchBottomSheet"
+        android:name="ru.pervukhin.presentation.search.SearchBottomSheet"
+        android:label="SearchBottomSheet">
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchBottomSheet_to_hardRouteFragment"
+            app:destination="@id/hardRouteFragment" />
+        <action
+            android:id="@+id/action_searchBottomSheet_to_hotTicketFragment"
+            app:destination="@id/hotTicketFragment" />
+        <action
+            android:id="@+id/action_searchBottomSheet_to_weekendFragment"
+            app:destination="@id/weekendFragment" />
+        <action
+            android:id="@+id/action_searchBottomSheet_to_searchTicketsFragment"
+            app:destination="@id/searchTicketsFragment" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/weekendFragment"
+        android:name="ru.pervukhin.presentation.weekend.WeekendFragment"
+        android:label="fragment_hard_route" />
+    <fragment
+        android:id="@+id/hotTicketFragment"
+        android:name="ru.pervukhin.presentation.hotTicket.HotTicketFragment"
+        android:label="HotTicketFragment" />
+    <fragment
+        android:id="@+id/hardRouteFragment"
+        android:name="ru.pervukhin.presentation.hardRoute.HardRouteFragment"
+        android:label="HardRouteFragment" />
+    <fragment
+        android:id="@+id/searchTicketsFragment"
+        android:name="ru.pervukhin.presentation.searchTickets.SearchTicketsFragment"
+        android:label="fragment_search_tickets">
+        <action
+            android:id="@+id/action_searchTicketsFragment_to_allTicketsFragment"
+            app:destination="@id/allTicketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTicketsFragment"
+        android:name="ru.pervukhin.presentation.allTickets.AllTicketsFragment"
+        android:label="fragment_all_tickets"/>
 </navigation>
