@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import ru.pervukhin.domain.Offer
 import ru.pervukhin.presentation.R
+import ru.pervukhin.presentation.databinding.ItemOfferBinding
 import ru.pervukhin.presentation.toCurrencyString
 import java.time.OffsetTime
 
@@ -18,27 +19,22 @@ class OfferAdapter: RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
     private var data = listOf<Offer>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferViewHolder {
-        return OfferViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_offer, parent, false))
+        return OfferViewHolder(ItemOfferBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: OfferViewHolder, position: Int) {
         val offer = data[position]
 
-        val image: ImageView = holder.itemView.findViewById(R.id.image)
-        val title: TextView = holder.itemView.findViewById(R.id.tvTitle)
-        val town: TextView = holder.itemView.findViewById(R.id.town)
-        val price: TextView = holder.itemView.findViewById(R.id.price)
-
         when(offer.id){
-            1-> image.setImageResource(R.drawable.first_image)
-            2-> image.setImageResource(R.drawable.second_image)
-            3-> image.setImageResource(R.drawable.third_image)
-            else -> image.setImageResource(R.drawable.third_image)
+            1-> holder.binding.image.setImageResource(R.drawable.first_image)
+            2-> holder.binding.image.setImageResource(R.drawable.second_image)
+            3-> holder.binding.image.setImageResource(R.drawable.third_image)
+            else -> holder.binding.image.setImageResource(R.drawable.third_image)
         }
 
-        title.text = offer.title
-        town.text = offer.town
-        price.text = holder.itemView.context.getString(R.string.price).format(offer.price.value.toFloat().toCurrencyString(holder.itemView.context))
+        holder.binding.tvTitle.text = offer.title
+        holder.binding.town.text = offer.town
+        holder.binding.price.text = holder.itemView.context.getString(R.string.price).format(offer.price.value.toFloat().toCurrencyString(holder.itemView.context))
     }
 
     override fun getItemCount(): Int = data.size
@@ -48,5 +44,5 @@ class OfferAdapter: RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class OfferViewHolder(view: View): ViewHolder(view)
+    class OfferViewHolder(val binding: ItemOfferBinding): ViewHolder(binding.root)
 }

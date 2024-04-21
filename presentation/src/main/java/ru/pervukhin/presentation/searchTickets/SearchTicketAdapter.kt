@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ru.pervukhin.domain.TicketOffer
 import ru.pervukhin.presentation.R
+import ru.pervukhin.presentation.databinding.ItemTicketOfferBinding
 import ru.pervukhin.presentation.toCurrencyString
 
 class SearchTicketAdapter : RecyclerView.Adapter<SearchTicketAdapter.SearchTicketViewHolder>() {
@@ -15,35 +16,34 @@ class SearchTicketAdapter : RecyclerView.Adapter<SearchTicketAdapter.SearchTicke
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchTicketViewHolder {
         return SearchTicketViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_ticket_offer, parent, false)
+            ItemTicketOfferBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
     override fun onBindViewHolder(holder: SearchTicketViewHolder, position: Int) {
         val item = data[position]
 
-        val image: View = holder.itemView.findViewById(R.id.image)
-        val name: TextView = holder.itemView.findViewById(R.id.name)
-        val price: TextView = holder.itemView.findViewById(R.id.price)
-        val time: TextView = holder.itemView.findViewById(R.id.time)
-
         var timeValue = ""
         item.timeRange.forEach {
-            timeValue += it +" "
+            timeValue += it + " "
         }
 
-        val colorId = when(item.tittle){
-            "Уральские авиалинии"-> R.color.red
-            "Победа"-> R.color.blue
-            "NordStar"->R.color.white
+        val colorId = when (item.tittle) {
+            "Уральские авиалинии" -> R.color.red
+            "Победа" -> R.color.blue
+            "NordStar" -> R.color.white
             else -> R.color.green
         }
 
-        image.backgroundTintList = ContextCompat.getColorStateList(image.context, colorId)
+        holder.binding.image.backgroundTintList = ContextCompat.getColorStateList(holder.binding.root.context, colorId)
 
-        name.text = item.tittle
-        price.text = item.price.value.toFloat().toCurrencyString(price.context)
-        time.text = timeValue
+        holder.binding.name.text = item.tittle
+        holder.binding.price.text = item.price.value.toFloat().toCurrencyString(holder.binding.root.context)
+        holder.binding.time.text = timeValue
     }
 
     override fun getItemCount(): Int = data.size
@@ -53,5 +53,6 @@ class SearchTicketAdapter : RecyclerView.Adapter<SearchTicketAdapter.SearchTicke
         notifyDataSetChanged()
     }
 
-    class SearchTicketViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class SearchTicketViewHolder(val binding: ItemTicketOfferBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

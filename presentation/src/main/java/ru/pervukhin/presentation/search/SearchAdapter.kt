@@ -9,32 +9,35 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import ru.pervukhin.presentation.R
+import ru.pervukhin.presentation.databinding.ItemSearchBinding
 
-class SearchAdapter(val onClick: (SearchObject) -> Unit = {}) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+class SearchAdapter(val onClick: (SearchObject) -> Unit = {}) :
+    RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
     private var data = listOf<SearchObject>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
+            ItemSearchBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val item = data[position]
 
-        val image = holder.itemView.findViewById<ImageView>(R.id.image)
-        val town = holder.itemView.findViewById<TextView>(R.id.town)
-
         when (item.id) {
-            1 -> image.setImageResource(R.drawable.first_search)
-            2 -> image.setImageResource(R.drawable.second_search)
-            3 -> image.setImageResource(R.drawable.third_search)
-            else -> image.setImageResource(R.drawable.third_search)
+            1 -> holder.binding.image.setImageResource(R.drawable.first_search)
+            2 -> holder.binding.image.setImageResource(R.drawable.second_search)
+            3 -> holder.binding.image.setImageResource(R.drawable.third_search)
+            else -> holder.binding.image.setImageResource(R.drawable.third_search)
         }
 
-        town.text = item.town
+        holder.binding.town.text = item.town
 
-        holder.itemView.setOnClickListener {
+        holder.binding.root.setOnClickListener {
             onClick.invoke(item)
         }
     }
@@ -46,5 +49,5 @@ class SearchAdapter(val onClick: (SearchObject) -> Unit = {}) : RecyclerView.Ada
         notifyDataSetChanged()
     }
 
-    class SearchViewHolder(view: View) : ViewHolder(view)
+    class SearchViewHolder(val binding: ItemSearchBinding) : ViewHolder(binding.root)
 }
