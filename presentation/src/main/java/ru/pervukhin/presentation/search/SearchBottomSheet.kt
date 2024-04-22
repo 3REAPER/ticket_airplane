@@ -9,19 +9,22 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import ru.pervukhin.presentation.R
 import ru.pervukhin.presentation.databinding.BottomSheetSearchBinding
 
-
+@AndroidEntryPoint
 class SearchBottomSheet: BottomSheetDialogFragment() {
     private var _binding: BottomSheetSearchBinding? = null
     private val binding get() = _binding!!
     private val args: SearchBottomSheetArgs by navArgs()
+    private val viewModel: SearchBottomSheetViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -101,8 +104,13 @@ class SearchBottomSheet: BottomSheetDialogFragment() {
 
     private fun getWindowHeight(): Int {
         val displayMetrics = DisplayMetrics()
-        (context as Activity?)!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+        (activity as Activity?)!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics.heightPixels
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveCityFrom(binding.etFrom.text.toString())
     }
 
     override fun onDestroy() {

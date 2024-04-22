@@ -6,6 +6,7 @@
   <string name="profile">Профиль</string>
 
   <string name="currency_symbol">%1$s ₽</string>
+  <string name="error">Что-то пошло не так проверьте подключение к интернету</string>
 
   <string name="search_tickets">Поиск дешевых\nавиабилетов</string>
   <string name="hint_from">Откуда - Москва</string>

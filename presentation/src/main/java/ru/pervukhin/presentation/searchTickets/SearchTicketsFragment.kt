@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import ru.pervukhin.presentation.databinding.FragmentSearchTicketsBinding
 import ru.pervukhin.presentation.getStringByFormat
 import ru.pervukhin.presentation.gone
+import ru.pervukhin.presentation.visible
 import java.util.Calendar
 import java.util.Date
 
@@ -65,7 +66,11 @@ class SearchTicketsFragment : Fragment() {
 
         binding.btnWatchAllTicket.setOnClickListener {
             val action =
-                SearchTicketsFragmentDirections.actionSearchTicketsFragmentToAllTicketsFragment(binding.etFrom.text.toString(), binding.etTo.text.toString(), dateDeparture.getStringByFormat("dd MMMM"))
+                SearchTicketsFragmentDirections.actionSearchTicketsFragmentToAllTicketsFragment(
+                    binding.etFrom.text.toString(),
+                    binding.etTo.text.toString(),
+                    dateDeparture.getStringByFormat("dd MMMM")
+                )
             findNavController().navigate(action)
         }
 
@@ -87,8 +92,21 @@ class SearchTicketsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.ticketOffer.collect {
-                        if (!it.isNullOrEmpty()) {
-                            adapter.setData(it)
+                        it.ifSuccess {
+                            binding.linearLayout2.visible()
+                            binding.btnWatchAllTicket.visible()
+                            binding.progressBar.gone()
+                            if (!it.isNullOrEmpty()) {
+                                adapter.setData(it)
+                            }
+                        }.ifError {
+                            binding.error.visible()
+                            binding.btnWatchAllTicket.visible()
+                            binding.progressBar.gone()
+                        }.ifLoading {
+                            binding.progressBar.visible()
+                            binding.linearLayout2.gone()
+                            binding.btnWatchAllTicket.icon
                         }
                     }
                 }
@@ -150,7 +168,10 @@ class SearchTicketsFragment : Fragment() {
 
             dialog.show()
         }
+    }
 
-
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveCityFrom(binding.etFrom.text.toString())
     }
 }

@@ -15,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.pervukhin.presentation.R
 import ru.pervukhin.presentation.databinding.FragmentAllTicketsBinding
+import ru.pervukhin.presentation.gone
+import ru.pervukhin.presentation.visible
 
 @AndroidEntryPoint
 class AllTicketsFragment : Fragment() {
@@ -54,8 +56,18 @@ class AllTicketsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.tickets.collect {
-                        if (!it.isNullOrEmpty()) {
-                            adapter.setData(it)
+                        it.ifSuccess {
+                            binding.rvTickets.visible()
+                            binding.progressBar.gone()
+                            if (!it.isNullOrEmpty()) {
+                                adapter.setData(it)
+                            }
+                        }.ifError {
+                            binding.error.visible()
+                            binding.progressBar.gone()
+                        }.ifLoading {
+                            binding.rvTickets.gone()
+                            binding.progressBar.visible()
                         }
                     }
                 }

@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.pervukhin.presentation.databinding.FragmentHomeBinding
+import ru.pervukhin.presentation.gone
+import ru.pervukhin.presentation.invisible
+import ru.pervukhin.presentation.visible
 
 
 @AndroidEntryPoint
@@ -44,18 +47,6 @@ class HomeFragment: Fragment() {
         binding.rvOffers.layoutManager = manager
         binding.rvOffers.adapter = adapter
 
-        binding.etFrom.setText(viewModel.getCityFrom())
-
-        binding.etFrom.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.saveCityFrom(p0.toString())
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
-        })
-
         binding.etTo.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToSearchBottomSheet(binding.etFrom.text.toString())
             findNavController().navigate(action)
@@ -70,8 +61,22 @@ class HomeFragment: Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
                     viewModel.offers.collect{
-                        if (!it.isNullOrEmpty()){
-                            adapter.setData(it)
+                        it.ifSuccess {
+                            binding.titleMusic.visible()
+                            binding.rvOffers.visible()
+                            binding.progressBar.gone()
+                            if (!it.isNullOrEmpty()) {
+                                adapter.setData(it)
+                            }
+                        }.ifError {
+                            binding.error.visible()
+                            binding.progressBar.gone()
+                            binding.titleMusic.gone()
+                            binding.rvOffers.gone()
+                        }.ifLoading {
+                            binding.progressBar.visible()
+                            binding.titleMusic.gone()
+                            binding.rvOffers.gone()
                         }
                     }
                 }
@@ -79,7 +84,15 @@ class HomeFragment: Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.etFrom.setText(viewModel.getCityFrom())
+    }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveCityFrom(binding.etFrom.text.toString())
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

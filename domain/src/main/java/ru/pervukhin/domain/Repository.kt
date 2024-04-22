@@ -2,9 +2,9 @@ package ru.pervukhin.domain
 
 interface Repository {
 
-    suspend fun getOffers(): List<Offer>?
+    suspend fun getOffers(): Resource<List<Offer>>
 
-    suspend fun getTickets(): List<Ticket>?
+    suspend fun getTickets(): Resource<List<Ticket>>
 
-    suspend fun getTicketOffers(): List<TicketOffer>?
+    suspend fun getTicketOffers(): Resource<List<TicketOffer>>
 }

@@ -34,9 +34,11 @@ class OfferAdapter: RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
     override fun getItemCount(): Int = data.size
 
     fun setData(data: List<Offer>){
-        this.data = data
-        notifyDataSetChanged()
+            this.data = data
+            notifyDataSetChanged()
     }
+
+
 
     class OfferViewHolder(val binding: ItemOfferBinding): ViewHolder(binding.root)
 }

@@ -5,29 +5,57 @@ import ru.pervukhin.data.Mapper.Companion.toTicket
 import ru.pervukhin.data.Mapper.Companion.toTicketOffer
 import ru.pervukhin.domain.Offer
 import ru.pervukhin.domain.Repository
+import ru.pervukhin.domain.Resource
 import ru.pervukhin.domain.Ticket
 import ru.pervukhin.domain.TicketOffer
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     val service: ApiService
-): Repository {
+) : Repository {
 
-    override suspend fun getOffers(): List<Offer>? {
-        val response = service.getOffers()
+    override suspend fun getOffers(): Resource<List<Offer>> {
+        return try {
+            val response = service.getOffers()
 
-        return response.body()?.data?.map { it.toOffer() }
+            if (response.isSuccessful) {
+                Resource.success(response.body()?.data?.map { it.toOffer() })
+            } else {
+                Resource.error()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return Resource.error()
+        }
     }
 
-    override suspend fun getTickets(): List<Ticket>? {
-        val response = service.getTicket()
+    override suspend fun getTickets(): Resource<List<Ticket>> {
+        return try {
+            val response = service.getTicket()
 
-        return response.body()?.data?.map { it.toTicket() }
+            if (response.isSuccessful) {
+                Resource.success(response.body()?.data?.map { it.toTicket() })
+            } else {
+                Resource.error()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error()
+        }
     }
 
-    override suspend fun getTicketOffers(): List<TicketOffer>? {
-        val response = service.getTicketOffers()
+    override suspend fun getTicketOffers(): Resource<List<TicketOffer>> {
+        return try {
+            val response = service.getTicketOffers()
 
-        return response.body()?.data?.map { it.toTicketOffer() }
+            if (response.isSuccessful) {
+                Resource.success(response.body()?.data?.map { it.toTicketOffer() })
+            } else {
+                Resource.error()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error()
+        }
     }
 }
