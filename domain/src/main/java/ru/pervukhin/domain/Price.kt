@@ -1,3 +1,3 @@
 package ru.pervukhin.domain
 
-class Price(val value: Int)
+data class Price(val value: Int)

@@ -55,7 +55,7 @@ class Mapper {
 
         private fun FlyInfoResponse.toFlyInfo() = FlyInfo(
             town,
-            SimpleDateFormat("yyyy-mm-dd'T'hh:mm:ss").parse(date),
+            SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").parse(date),
             airport
         )
 
