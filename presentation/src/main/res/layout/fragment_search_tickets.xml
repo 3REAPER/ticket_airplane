@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/etTo"
                         style="@style/tv16Regular"
                         android:layout_width="0dp"

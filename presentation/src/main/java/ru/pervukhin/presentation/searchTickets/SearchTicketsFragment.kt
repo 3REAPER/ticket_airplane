@@ -56,7 +56,7 @@ class SearchTicketsFragment : Fragment() {
 
         binding.ivSwop.setOnClickListener {
             val buffer = binding.etFrom.text
-            binding.etFrom.text = binding.etTo.text
+            binding.etFrom.setText(binding.etTo.text)
             binding.etTo.text = buffer
         }
 
@@ -66,7 +66,7 @@ class SearchTicketsFragment : Fragment() {
 
         binding.btnWatchAllTicket.setOnClickListener {
             val action =
-                SearchTicketsFragmentDirections.actionSearchTicketsFragmentToAllTicketsFragment()
+                SearchTicketsFragmentDirections.actionSearchTicketsFragmentToAllTicketsFragment(binding.etFrom.text.toString(), binding.etTo.text.toString(), dateDeparture.getStringByFormat("dd MMMM"))
             findNavController().navigate(action)
         }
 

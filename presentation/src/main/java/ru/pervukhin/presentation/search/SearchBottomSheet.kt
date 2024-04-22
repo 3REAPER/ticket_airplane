@@ -71,7 +71,7 @@ class SearchBottomSheet: BottomSheetDialogFragment() {
         })
 
         binding.ivClose.setOnClickListener {
-            binding.etFrom.setText("")
+            binding.etTo.setText("")
         }
 
         return binding.root

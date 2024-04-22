@@ -24,4 +24,11 @@
   <string name="economy">1,эконом</string>
   <string name="watch_all_tickets">Посмотреть все билеты</string>
   <string name="direct_flights">Прямые рейсы</string>
+
+  <string name="transfer">%1$sч в пути%2$s</string>
+  <string name="no_transfer">/Без пересадок</string>
+  <string name="route">%1$s-%2$s</string>
+  <string name="date">%1$s, 1 пассажир</string>
+  <string name="filter">Фильтр</string>
+  <string name="statistic">График цен</string>
 </resources>

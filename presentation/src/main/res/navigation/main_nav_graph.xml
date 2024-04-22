@@ -80,5 +80,15 @@
     <fragment
         android:id="@+id/allTicketsFragment"
         android:name="ru.pervukhin.presentation.allTickets.AllTicketsFragment"
-        android:label="fragment_all_tickets"/>
+        android:label="fragment_all_tickets">
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="to"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
 </navigation>
