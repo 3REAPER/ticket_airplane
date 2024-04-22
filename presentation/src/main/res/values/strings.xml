@@ -31,4 +31,6 @@
   <string name="date">%1$s, 1 пассажир</string>
   <string name="filter">Фильтр</string>
   <string name="statistic">График цен</string>
+
+  <string name="сyrillic">АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя</string>
 </resources>

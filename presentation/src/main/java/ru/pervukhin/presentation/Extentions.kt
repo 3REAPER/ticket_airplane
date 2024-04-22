@@ -1,17 +1,7 @@
 package ru.pervukhin.presentation
 
 import android.content.Context
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.util.DisplayMetrics
 import android.view.View
-import android.widget.ImageView
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.BitmapImageViewTarget
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Date

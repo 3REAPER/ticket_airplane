@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import ru.pervukhin.presentation.databinding.FragmentSearchTicketsBinding
 import ru.pervukhin.presentation.getStringByFormat
 import ru.pervukhin.presentation.gone
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 

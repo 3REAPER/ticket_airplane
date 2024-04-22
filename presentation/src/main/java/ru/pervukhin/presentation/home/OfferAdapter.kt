@@ -1,19 +1,13 @@
 package ru.pervukhin.presentation.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
 import ru.pervukhin.domain.Offer
 import ru.pervukhin.presentation.R
 import ru.pervukhin.presentation.databinding.ItemOfferBinding
 import ru.pervukhin.presentation.toCurrencyString
-import java.time.OffsetTime
 
 class OfferAdapter: RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
     private var data = listOf<Offer>()

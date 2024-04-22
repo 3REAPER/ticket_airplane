@@ -1,7 +1,6 @@
 package ru.pervukhin.presentation.allTickets
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.pervukhin.domain.Ticket
@@ -11,7 +10,6 @@ import ru.pervukhin.presentation.getStringByFormat
 import ru.pervukhin.presentation.gone
 import ru.pervukhin.presentation.toCurrencyString
 import ru.pervukhin.presentation.visible
-import java.util.Date
 import java.util.concurrent.TimeUnit
 
 class TicketsAdapter : RecyclerView.Adapter<TicketsAdapter.TicketViewHolder>() {

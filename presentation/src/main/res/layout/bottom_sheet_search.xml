@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/grey2"
-        android:background="@drawable/background_rounded16_top">
+        android:background="@drawable/background_rounded16_top"
+        android:backgroundTint="@color/grey2">
 
         <View
             android:id="@+id/view"
@@ -55,16 +55,19 @@
 
                     <EditText
                         android:id="@+id/etFrom"
-                        style="@style/tv16Regular"
+                        android:theme="@style/editTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="8dp"
                         android:background="@null"
+                        android:digits="@string/сyrillic"
                         android:hint="@string/hint_from"
-                        android:inputType="textCapSentences"
+                        android:inputType="textCapSentences|textNoSuggestions"
+                        android:textAppearance="@style/tv16Regular"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/grey6" />
+                        android:textColorHint="@color/grey6"
+                        android:textCursorDrawable="@color/white" />
 
                 </LinearLayout>
 
@@ -93,10 +96,10 @@
                         style="@style/tv16Regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:layout_gravity="center"
-                        android:background="@null"
+                        android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
+                        android:background="@null"
                         android:hint="@string/hint_to"
                         android:textColor="@color/white"
                         android:textColorHint="@color/grey6"

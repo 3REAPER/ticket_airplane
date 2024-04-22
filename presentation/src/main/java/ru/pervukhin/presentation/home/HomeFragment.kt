@@ -2,8 +2,6 @@ package ru.pervukhin.presentation.home
 
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputFilter
-import android.text.Layout.Directions
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.pervukhin.presentation.R
 import ru.pervukhin.presentation.databinding.FragmentHomeBinding
-import ru.pervukhin.presentation.search.SearchBottomSheet
 
 
 @AndroidEntryPoint
